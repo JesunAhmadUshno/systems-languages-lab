@@ -2,7 +2,7 @@
 
 Systems languages for ML platform work: a Go service and a Rust CLI.
 
-Status: Learn DONE 2026-11-05 (Level 1, executed in Python; Go and Rust toolchains missing on the build VM, see level-1-learn/README.md). Build and Deep not started.
+Status: Learn DONE 2026-11-05 and Build DONE 2026-11-05 (both executed in Python; Go and Rust toolchains missing on the build VM, see the level READMEs). Deep not started.
 Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
 
 ## Start here
@@ -23,6 +23,7 @@ Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
 | Test | Result |
 | --- | --- |
 | Learn (Python reference, Muse VM, 2026-11-05) | Health worker 4 of 6 endpoints healthy; router 6 of 8 requests routed; manifest checker 4 of 6 tools unsafe, 7 flags. Full record in level-1-learn/results_learn.json. |
+| Build (Python reference, Muse VM, 2026-11-05) | Cancellable pool 8 of 10 endpoints healthy, 2 classified errors, pre-cancelled run 0 probed and 10 skipped; router 11 of 12 requests routed; extended checker 5 of 8 tools unsafe, 14 flags across 8 rules. Full record in level-2-build/results_build.json. |
 
 ## Novelty
 
