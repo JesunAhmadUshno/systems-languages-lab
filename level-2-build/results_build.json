@@ -1,0 +1,342 @@
+{
+  "cancellation": {
+    "probed": 0,
+    "skipped": 10,
+    "status": "cancelled"
+  },
+  "duplicate_names": [],
+  "errors": {
+    "errors_total": 2,
+    "per_kind": {
+      "http_error": 1,
+      "timeout": 1
+    }
+  },
+  "executed_language": "python",
+  "go_toolchain": "missing on this VM (go not found, rechecked 2026-11-05)",
+  "health": {
+    "by_model": {
+      "chat": {
+        "healthy": 3,
+        "total": 4
+      },
+      "code": {
+        "healthy": 2,
+        "total": 2
+      },
+      "embed": {
+        "healthy": 2,
+        "total": 2
+      },
+      "vision": {
+        "healthy": 1,
+        "total": 2
+      }
+    },
+    "endpoints_healthy": 8,
+    "endpoints_total": 10
+  },
+  "health_records": [
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 40,
+      "model": "chat",
+      "name": "alpha-chat",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 15,
+      "model": "embed",
+      "name": "alpha-embed",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "beta-chat",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 30,
+      "model": "embed",
+      "name": "beta-embed",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 20,
+      "model": "chat",
+      "name": "delta-chat",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 35,
+      "model": "vision",
+      "name": "epsilon-vision",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 18,
+      "model": "code",
+      "name": "eta-code",
+      "note": "200 ok"
+    },
+    {
+      "error_chain": [
+        "probe transport failed: 503 unavailable",
+        "probe gamma-chat"
+      ],
+      "error_kind": "http_error",
+      "healthy": false,
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "gamma-chat",
+      "note": "503 unavailable"
+    },
+    {
+      "error_chain": [
+        "probe transport failed: probe timeout",
+        "probe gamma-vision"
+      ],
+      "error_kind": "timeout",
+      "healthy": false,
+      "latency_ms": 50,
+      "model": "vision",
+      "name": "gamma-vision",
+      "note": "probe timeout"
+    },
+    {
+      "error_chain": [],
+      "error_kind": null,
+      "healthy": true,
+      "latency_ms": 18,
+      "model": "code",
+      "name": "zeta-code",
+      "note": "200 ok"
+    }
+  ],
+  "level": "2-build",
+  "manifest": {
+    "flags_per_rule": {
+      "R1": 2,
+      "R2": 1,
+      "R3": 2,
+      "R4": 1,
+      "R5": 1,
+      "R6": 3,
+      "R7": 3,
+      "R8": 1
+    },
+    "flags_per_severity": {
+      "high": 3,
+      "low": 5,
+      "medium": 6
+    },
+    "tools_safe": 3,
+    "tools_total": 8,
+    "tools_unsafe": 5,
+    "total_flags": 14
+  },
+  "pool": {
+    "probed": 10,
+    "skipped": 0,
+    "status": "completed"
+  },
+  "routing": {
+    "per_endpoint": {
+      "alpha-embed": 2,
+      "delta-chat": 3,
+      "epsilon-vision": 3,
+      "eta-code": 3
+    },
+    "requests_routed": 11,
+    "requests_total": 12,
+    "requests_unrouted": 1
+  },
+  "routing_records": [
+    {
+      "model": "chat",
+      "request": 1,
+      "routed": true,
+      "routed_to": "delta-chat"
+    },
+    {
+      "model": "embed",
+      "request": 2,
+      "routed": true,
+      "routed_to": "alpha-embed"
+    },
+    {
+      "model": "vision",
+      "request": 3,
+      "routed": true,
+      "routed_to": "epsilon-vision"
+    },
+    {
+      "model": "code",
+      "request": 4,
+      "routed": true,
+      "routed_to": "eta-code"
+    },
+    {
+      "model": "chat",
+      "request": 5,
+      "routed": true,
+      "routed_to": "delta-chat"
+    },
+    {
+      "model": "vision",
+      "request": 6,
+      "routed": true,
+      "routed_to": "epsilon-vision"
+    },
+    {
+      "model": "code",
+      "request": 7,
+      "routed": true,
+      "routed_to": "eta-code"
+    },
+    {
+      "model": "embed",
+      "request": 8,
+      "routed": true,
+      "routed_to": "alpha-embed"
+    },
+    {
+      "model": "chat",
+      "request": 9,
+      "routed": true,
+      "routed_to": "delta-chat"
+    },
+    {
+      "model": "code",
+      "request": 10,
+      "routed": true,
+      "routed_to": "eta-code"
+    },
+    {
+      "model": "vision",
+      "request": 11,
+      "routed": true,
+      "routed_to": "epsilon-vision"
+    },
+    {
+      "model": "unknown",
+      "request": 12,
+      "routed": false,
+      "routed_to": null
+    }
+  ],
+  "rust_toolchain": "missing on this VM (rustc and cargo not found, rechecked 2026-11-05)",
+  "tool_records": [
+    {
+      "flag_count": 0,
+      "flags": [],
+      "name": "file_reader",
+      "safe": true,
+      "severities": []
+    },
+    {
+      "flag_count": 5,
+      "flags": [
+        "R1",
+        "R2",
+        "R6",
+        "R7",
+        "R8"
+      ],
+      "name": "shell_runner",
+      "safe": false,
+      "severities": [
+        "high",
+        "low",
+        "medium"
+      ]
+    },
+    {
+      "flag_count": 1,
+      "flags": [
+        "R3"
+      ],
+      "name": "web_fetch",
+      "safe": false,
+      "severities": [
+        "medium"
+      ]
+    },
+    {
+      "flag_count": 3,
+      "flags": [
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "name": "code_writer",
+      "safe": false,
+      "severities": [
+        "low",
+        "medium"
+      ]
+    },
+    {
+      "flag_count": 0,
+      "flags": [],
+      "name": "data_query",
+      "safe": true,
+      "severities": []
+    },
+    {
+      "flag_count": 3,
+      "flags": [
+        "R1",
+        "R3",
+        "R7"
+      ],
+      "name": "admin_tool",
+      "safe": false,
+      "severities": [
+        "high",
+        "medium"
+      ]
+    },
+    {
+      "flag_count": 2,
+      "flags": [
+        "R6",
+        "R7"
+      ],
+      "name": "vision_tool",
+      "safe": false,
+      "severities": [
+        "low",
+        "medium"
+      ]
+    },
+    {
+      "flag_count": 0,
+      "flags": [],
+      "name": "scoped_writer",
+      "safe": true,
+      "severities": []
+    }
+  ]
+}
