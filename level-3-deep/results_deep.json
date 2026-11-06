@@ -1,0 +1,123 @@
+{
+  "deterministic": {
+    "baseline_routing": {
+      "per_endpoint": {
+        "ep-0007-epsilon-vision": 4000,
+        "ep-0014-alpha-embed": 4000,
+        "ep-0028-zeta-code": 4000,
+        "ep-0063-delta-chat": 4000
+      },
+      "requests_routed": 16000,
+      "requests_total": 20000,
+      "requests_unrouted": 4000
+    },
+    "build_fixture_routing": {
+      "per_endpoint": {
+        "alpha-embed": 2,
+        "delta-chat": 3,
+        "epsilon-vision": 3,
+        "eta-code": 3
+      },
+      "requests_routed": 11,
+      "requests_total": 12,
+      "requests_unrouted": 1
+    },
+    "build_fixture_routing_identical": true,
+    "health": {
+      "by_model": {
+        "chat": {
+          "healthy": 60,
+          "total": 80
+        },
+        "code": {
+          "healthy": 40,
+          "total": 40
+        },
+        "embed": {
+          "healthy": 40,
+          "total": 40
+        },
+        "vision": {
+          "healthy": 20,
+          "total": 40
+        }
+      },
+      "endpoints_healthy": 160,
+      "endpoints_total": 200
+    },
+    "indexed_routing": {
+      "per_endpoint": {
+        "ep-0007-epsilon-vision": 4000,
+        "ep-0014-alpha-embed": 4000,
+        "ep-0028-zeta-code": 4000,
+        "ep-0063-delta-chat": 4000
+      },
+      "requests_routed": 16000,
+      "requests_total": 20000,
+      "requests_unrouted": 4000
+    },
+    "pool": {
+      "probed": 200,
+      "skipped": 0,
+      "status": "completed"
+    },
+    "routing_records_identical": true,
+    "workload": {
+      "endpoints": 200,
+      "models": [
+        "chat",
+        "embed",
+        "vision",
+        "code",
+        "unknown"
+      ],
+      "requests": 20000
+    }
+  },
+  "deterministic_repeat_identical": true,
+  "executed_language": "python",
+  "go_toolchain": "missing on this VM (go not found, rechecked 2026-11-05)",
+  "level": "3-deep",
+  "profile_top": [
+    "         696002 function calls in 1.856 seconds",
+    "",
+    "   Ordered by: cumulative time",
+    "",
+    "   ncalls  tottime  percall  cumtime  percall filename:lineno(function)",
+    "        1    0.068    0.068    1.856    1.856 level-2-build/service_build.py:154(run_routing_build)",
+    "    20000    0.760    0.000    1.780    0.000 level-2-build/service_build.py:145(route_build)",
+    "    16000    0.720    0.000    1.020    0.000 {method 'sort' of 'list' objects}",
+    "   640000    0.299    0.000    0.299    0.000 level-2-build/service_build.py:150(<lambda>)",
+    "    20000    0.008    0.000    0.008    0.000 {method 'append' of 'list' objects}",
+    "        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}",
+    "",
+    ""
+  ],
+  "rust_toolchain": "missing on this VM (rustc and cargo not found, rechecked 2026-11-05)",
+  "timing": {
+    "baseline": {
+      "median_s": 2.434,
+      "repetitions": 5,
+      "times_s": [
+        1.9081,
+        2.5962,
+        2.6068,
+        2.434,
+        1.9084
+      ]
+    },
+    "indexed": {
+      "median_s": 0.0765,
+      "repetitions": 5,
+      "times_s": [
+        0.1301,
+        0.0765,
+        0.1065,
+        0.0316,
+        0.0619
+      ]
+    },
+    "indexed_route_only_note": "indexed timing includes one index build per batch",
+    "method": "perf_counter, 1 warmup, 5 pooled repetitions, median reported"
+  }
+}
