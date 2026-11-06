@@ -30,7 +30,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD_DIR = os.path.join(os.path.dirname(HERE), "level-2-build")
 sys.path.insert(0, BUILD_DIR)
 
-import service_build as sb
+import service_build as sb  # noqa: E402
 
 WORKLOAD_ENDPOINTS = 200
 WORKLOAD_REQUESTS = 20000

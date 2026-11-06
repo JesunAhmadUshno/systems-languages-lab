@@ -60,16 +60,86 @@ class CancelToken:
 # Build fixture registry. latency_ms is a scripted routing preference,
 # not a measured wall time. error_kind is set only on failing probes.
 ENDPOINTS_BUILD = [
-    {"name": "alpha-chat", "model": "chat", "latency_ms": 40, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "beta-chat", "model": "chat", "latency_ms": 25, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "gamma-chat", "model": "chat", "latency_ms": 25, "probe_ok": False, "probe_note": "503 unavailable", "error_kind": "http_error"},
-    {"name": "delta-chat", "model": "chat", "latency_ms": 20, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "alpha-embed", "model": "embed", "latency_ms": 15, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "beta-embed", "model": "embed", "latency_ms": 30, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "gamma-vision", "model": "vision", "latency_ms": 50, "probe_ok": False, "probe_note": "probe timeout", "error_kind": "timeout"},
-    {"name": "epsilon-vision", "model": "vision", "latency_ms": 35, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "zeta-code", "model": "code", "latency_ms": 18, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
-    {"name": "eta-code", "model": "code", "latency_ms": 18, "probe_ok": True, "probe_note": "200 ok", "error_kind": None},
+    {
+        "name": 'alpha-chat',
+        "model": 'chat',
+        "latency_ms": 40,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'beta-chat',
+        "model": 'chat',
+        "latency_ms": 25,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'gamma-chat',
+        "model": 'chat',
+        "latency_ms": 25,
+        "probe_ok": False,
+        "probe_note": '503 unavailable',
+        "error_kind": 'http_error'
+    },
+    {
+        "name": 'delta-chat',
+        "model": 'chat',
+        "latency_ms": 20,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'alpha-embed',
+        "model": 'embed',
+        "latency_ms": 15,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'beta-embed',
+        "model": 'embed',
+        "latency_ms": 30,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'gamma-vision',
+        "model": 'vision',
+        "latency_ms": 50,
+        "probe_ok": False,
+        "probe_note": 'probe timeout',
+        "error_kind": 'timeout'
+    },
+    {
+        "name": 'epsilon-vision',
+        "model": 'vision',
+        "latency_ms": 35,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'zeta-code',
+        "model": 'code',
+        "latency_ms": 18,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
+    {
+        "name": 'eta-code',
+        "model": 'code',
+        "latency_ms": 18,
+        "probe_ok": True,
+        "probe_note": '200 ok',
+        "error_kind": None
+    },
 ]
 
 REQUEST_MODELS_BUILD = ["chat", "embed", "vision", "code", "chat", "vision",
