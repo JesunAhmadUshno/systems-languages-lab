@@ -11,8 +11,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-import manifest_build as mb
-import service_build as sb
+import manifest_build as mb  # noqa: E402
+import service_build as sb  # noqa: E402
 
 
 def build_results():
@@ -51,7 +51,8 @@ def main():
     r = results["routing"]
     m = results["manifest"]
     print("health: %d of %d endpoints healthy" % (h["endpoints_healthy"], h["endpoints_total"]))
-    print("routing: %d of %d requests routed, %d unrouted" % (r["requests_routed"], r["requests_total"], r["requests_unrouted"]))
+    print("routing: %d of %d requests routed, %d unrouted"
+          % (r["requests_routed"], r["requests_total"], r["requests_unrouted"]))
     print("manifest: %d of %d tools unsafe, %d total flags" % (m["tools_unsafe"], m["tools_total"], m["total_flags"]))
     print("cancellation: %s, %d skipped" % (results["cancellation"]["status"], results["cancellation"]["skipped"]))
     print("wrote", out_path)

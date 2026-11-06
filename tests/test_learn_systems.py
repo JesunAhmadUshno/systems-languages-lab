@@ -28,8 +28,8 @@ import unittest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
 
-import health_service as hs
-import manifest_checker as mc
+import health_service as hs  # noqa: E402
+import manifest_checker as mc  # noqa: E402
 
 
 class TestHealth(unittest.TestCase):
