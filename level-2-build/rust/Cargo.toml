@@ -1,0 +1,12 @@
+[package]
+name = "manifest-checker"
+version = "0.2.0"
+edition = "2021"
+
+[lib]
+name = "manifest_checker"
+path = "src/lib.rs"
+
+[[bin]]
+name = "manifest-checker"
+path = "src/main.rs"
