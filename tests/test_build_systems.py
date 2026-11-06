@@ -14,8 +14,8 @@ import unittest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
 
-import manifest_build as mb
-import service_build as sb
+import manifest_build as mb  # noqa: E402
+import service_build as sb  # noqa: E402
 
 
 class TestBuildHealth(unittest.TestCase):
