@@ -16,3 +16,5 @@ jobs:
         run: python level-1-learn/run_learn.py
       - name: build runner
         run: python level-2-build/run_build.py
+      - name: deep runner
+        run: python level-3-deep/run_deep.py
