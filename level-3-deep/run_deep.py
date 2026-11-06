@@ -14,7 +14,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-import profile_deep as pd
+import profile_deep as pd  # noqa: E402
 
 
 def build_results():

@@ -1,0 +1,4 @@
+# systems-languages-lab executed Python runs on the standard library only.
+# Go and Rust sources are UNEXECUTED in this repo (toolchains missing on the build VM).
+# This file exists so Dependabot pip updates have a manifest to watch.
+# If a real dependency is ever added, it is pinned here.

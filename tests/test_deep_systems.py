@@ -16,8 +16,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-3-deep"))
 sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
 
-import profile_deep as pd
-import service_build as sb
+import profile_deep as pd  # noqa: E402
+import service_build as sb  # noqa: E402
 
 
 class TestIndexedRouterOnBuildFixtures(unittest.TestCase):
