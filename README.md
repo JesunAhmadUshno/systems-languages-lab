@@ -33,3 +33,16 @@ PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check 
 ## License
 
 Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0. Ruled in D-V3-11, 2026-11-04.
+
+## Fan-out
+
+Written fan-out set for v1.0, in fanout/: blog post, tutorial,
+website page copy, LinkedIn draft (held, not posted), paper
+candidate brief (profile-and-fix bottleneck note; submission is
+Jesun's tap, nothing submitted), and release notes covering
+v0.1, v0.5, and v1.0. Every piece states plainly that Go and
+Rust sources are UNEXECUTED, every executed level is a Python
+reference only, all probes and manifests are scripted fixtures,
+and the Deep speedup is an order of magnitude effect, not a
+constant. Channel outcomes and per-piece publicity grades are
+logged in PUBLICITY.md. Docs page: https://jesunahmadushno.github.io/systems-languages-lab/
