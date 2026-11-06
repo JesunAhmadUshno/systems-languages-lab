@@ -1,0 +1,189 @@
+{
+  "executed_language": "python",
+  "go_toolchain": "missing on this VM (go not found, 2026-11-05)",
+  "health": {
+    "by_model": {
+      "chat": {
+        "healthy": 2,
+        "total": 3
+      },
+      "embed": {
+        "healthy": 2,
+        "total": 2
+      },
+      "vision": {
+        "healthy": 0,
+        "total": 1
+      }
+    },
+    "endpoints_healthy": 4,
+    "endpoints_total": 6
+  },
+  "health_records": [
+    {
+      "healthy": true,
+      "latency_ms": 40,
+      "model": "chat",
+      "name": "alpha-chat",
+      "note": "200 ok"
+    },
+    {
+      "healthy": true,
+      "latency_ms": 15,
+      "model": "embed",
+      "name": "alpha-embed",
+      "note": "200 ok"
+    },
+    {
+      "healthy": true,
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "beta-chat",
+      "note": "200 ok"
+    },
+    {
+      "healthy": true,
+      "latency_ms": 30,
+      "model": "embed",
+      "name": "beta-embed",
+      "note": "200 ok"
+    },
+    {
+      "healthy": false,
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "gamma-chat",
+      "note": "503 unavailable"
+    },
+    {
+      "healthy": false,
+      "latency_ms": 50,
+      "model": "vision",
+      "name": "gamma-vision",
+      "note": "probe timeout"
+    }
+  ],
+  "level": "1-learn",
+  "manifest": {
+    "flags_per_rule": {
+      "R1": 2,
+      "R2": 1,
+      "R3": 2,
+      "R4": 1,
+      "R5": 1
+    },
+    "tools_safe": 2,
+    "tools_total": 6,
+    "tools_unsafe": 4,
+    "total_flags": 7
+  },
+  "routing": {
+    "per_endpoint": {
+      "alpha-embed": 2,
+      "beta-chat": 4
+    },
+    "requests_routed": 6,
+    "requests_total": 8,
+    "requests_unrouted": 2
+  },
+  "routing_records": [
+    {
+      "model": "chat",
+      "request": 1,
+      "routed": true,
+      "routed_to": "beta-chat"
+    },
+    {
+      "model": "chat",
+      "request": 2,
+      "routed": true,
+      "routed_to": "beta-chat"
+    },
+    {
+      "model": "embed",
+      "request": 3,
+      "routed": true,
+      "routed_to": "alpha-embed"
+    },
+    {
+      "model": "vision",
+      "request": 4,
+      "routed": false,
+      "routed_to": null
+    },
+    {
+      "model": "chat",
+      "request": 5,
+      "routed": true,
+      "routed_to": "beta-chat"
+    },
+    {
+      "model": "embed",
+      "request": 6,
+      "routed": true,
+      "routed_to": "alpha-embed"
+    },
+    {
+      "model": "vision",
+      "request": 7,
+      "routed": false,
+      "routed_to": null
+    },
+    {
+      "model": "chat",
+      "request": 8,
+      "routed": true,
+      "routed_to": "beta-chat"
+    }
+  ],
+  "rust_toolchain": "missing on this VM (rustc not found, 2026-11-05)",
+  "tool_records": [
+    {
+      "flag_count": 0,
+      "flags": [],
+      "name": "file_reader",
+      "safe": true
+    },
+    {
+      "flag_count": 2,
+      "flags": [
+        "R1",
+        "R2"
+      ],
+      "name": "shell_runner",
+      "safe": false
+    },
+    {
+      "flag_count": 1,
+      "flags": [
+        "R3"
+      ],
+      "name": "web_fetch",
+      "safe": false
+    },
+    {
+      "flag_count": 2,
+      "flags": [
+        "R4",
+        "R5"
+      ],
+      "name": "code_writer",
+      "safe": false
+    },
+    {
+      "flag_count": 0,
+      "flags": [],
+      "name": "data_query",
+      "safe": true
+    },
+    {
+      "flag_count": 2,
+      "flags": [
+        "R1",
+        "R3"
+      ],
+      "name": "admin_tool",
+      "safe": false
+    }
+  ]
+}
