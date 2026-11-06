@@ -2,7 +2,7 @@
 
 Systems languages for ML platform work: a Go service and a Rust CLI.
 
-Status: SCAFFOLD (Wave 0, ROADMAP-V3-BATCH, 2026-11-04). Scaffold is not built. No results exist yet.
+Status: Learn DONE 2026-11-05 (Level 1, executed in Python; Go and Rust toolchains missing on the build VM, see level-1-learn/README.md). Build and Deep not started.
 Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
 
 ## Start here
@@ -22,7 +22,7 @@ Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
 
 | Test | Result |
 | --- | --- |
-| NO RESULTS YET | No measurement has run. This table fills only with measured numbers, with method. |
+| Learn (Python reference, Muse VM, 2026-11-05) | Health worker 4 of 6 endpoints healthy; router 6 of 8 requests routed; manifest checker 4 of 6 tools unsafe, 7 flags. Full record in level-1-learn/results_learn.json. |
 
 ## Novelty
 
