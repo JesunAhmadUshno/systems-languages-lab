@@ -3,6 +3,7 @@ import learn from '../../level-1-learn/results_learn.json';
 import build from '../../level-2-build/results_build.json';
 import deep from '../../level-3-deep/results_deep.json';
 import fx from '../../level-2-build/fixtures_build.json';
+import rep from '../../level-3-deep/results_deep_repeats.json';
 import learnMd from '../../level-1-learn/README.md?raw';
 import buildMd from '../../level-2-build/README.md?raw';
 import deepMd from '../../level-3-deep/README.md?raw';
@@ -425,9 +426,42 @@ function Profile() {
       </div>
       <p className="banner">
         <b>Shared-VM variance.</b> Five repetitions on a shared VM is a thin sample, so read the ratio as an order of magnitude, not a constant.
-        {QUIET && <> A quieter study run recorded in the Deep README measured {QUIET[1]} s and {QUIET[2]} s, a {(QUIET[1] / QUIET[2]).toFixed(0)}× ratio.</>} No confidence interval is claimed.
+        {QUIET && <> A quieter study run recorded in the Deep README measured {QUIET[1]} s and {QUIET[2]} s, a {(QUIET[1] / QUIET[2]).toFixed(0)}× ratio.</>} The recorded run carries no confidence interval; the repeat run below adds one.
       </p>
+      <RepeatRun />
     </section>
+  );
+}
+
+function RepeatRun() {
+  const narrow = useNarrow();
+  const p = rep.paired, sw = rep.sweep;
+  const W = narrow ? 360 : 960, H = 200, pad = { l: 56, r: 16, t: 14, b: 26 };
+  const ymax = Math.max(...sw.map((r) => r.baseline_median_s));
+  const sx = (n) => pad.l + ((Math.log2(n) - Math.log2(sw[0].endpoints)) / (Math.log2(sw[sw.length - 1].endpoints) - Math.log2(sw[0].endpoints))) * (W - pad.l - pad.r);
+  const sy = (v) => pad.t + (1 - v / ymax) * (H - pad.t - pad.b);
+  return (
+    <>
+      <h3 style={{ marginTop: 24 }}>Repeat run · recorded {rep.recorded_on}, {rep.machine.machine}, Python {rep.machine.python} (a different machine from the study VM)</h3>
+      <p className="sub">
+        From <a href={blob('level-3-deep/results_deep_repeats.json')}>results_deep_repeats.json</a>, written by <span className="mono">timing_repeats.py</span>: {p.repetitions} interleaved paired repetitions on the same workload, then a registry-size sweep at {fmt(sw[0].requests)} requests.
+        Absolute times differ from the study VM by machine; compare ratios and shapes, not seconds.
+      </p>
+      <div className="tiles sm">
+        <div className="tile"><div className="num">{p.median_paired_ratio}×</div><div className="cap">median paired ratio, {p.repetitions} reps</div></div>
+        <div className="tile"><div className="num">{p.bootstrap_ci95_median_ratio[0]}–{p.bootstrap_ci95_median_ratio[1]}×</div><div className="cap">95% percentile bootstrap CI ({fmt(p.bootstrap.resamples)} resamples)</div></div>
+        <div className="tile"><div className="num">{p.baseline_median_s} s</div><div className="cap">baseline median on this machine</div></div>
+        <div className="tile"><div className="num">{p.indexed_median_s} s</div><div className="cap">indexed median on this machine</div></div>
+      </div>
+      <svg className="chart" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Recorded median batch time by registry size, baseline versus indexed, repeat run" style={{ marginTop: 16 }}>
+        {sw.map((r, i) => <g key={r.endpoints}><line className="axis" x1={sx(r.endpoints)} x2={sx(r.endpoints)} y1={pad.t} y2={H - pad.b} /><text x={sx(r.endpoints)} y={H - 8} textAnchor={i === sw.length - 1 ? 'end' : 'middle'}>{r.endpoints}{narrow ? '' : ' endpoints'}</text></g>)}
+        <text x={pad.l - 6} y={sy(ymax) + 4} textAnchor="end">{ymax} s</text><text x={pad.l - 6} y={sy(0) + 4} textAnchor="end">0</text>
+        <polyline fill="none" stroke="var(--bad)" strokeWidth="2.5" points={sw.map((r) => `${sx(r.endpoints)},${sy(r.baseline_median_s)}`).join(' ')} />
+        <polyline fill="none" stroke="var(--good)" strokeWidth="2.5" points={sw.map((r) => `${sx(r.endpoints)},${sy(r.indexed_median_s)}`).join(' ')} />
+        {sw.map((r) => <g key={r.endpoints}><circle cx={sx(r.endpoints)} cy={sy(r.baseline_median_s)} r="4" fill="var(--bad)"><title>{`${r.endpoints}: baseline ${r.baseline_median_s} s`}</title></circle><circle cx={sx(r.endpoints)} cy={sy(r.indexed_median_s)} r="4" fill="var(--good)"><title>{`${r.endpoints}: indexed ${r.indexed_median_s} s`}</title></circle></g>)}
+      </svg>
+      <div className="legend"><span><i style={{ background: 'var(--bad)' }} />baseline median: ×{(sw[sw.length - 1].baseline_median_s / sw[0].baseline_median_s).toFixed(1)} time for ×{sw[sw.length - 1].endpoints / sw[0].endpoints} endpoints</span><span><i style={{ background: 'var(--good)' }} />indexed median: ×{(sw[sw.length - 1].indexed_median_s / sw[0].indexed_median_s).toFixed(1)}</span><span>records identical at every size: {String(sw.every((r) => r.records_identical))}</span></div>
+    </>
   );
 }
 
