@@ -87,6 +87,14 @@ assert.equal(L.parseGoSteps(read('level-3-deep/go/internal/profile/profile.go'))
 
 assert.ok(L.sameData(L.summariseRouting(L.runRouting(learn.routing_records.map((r) => r.model), learn.health_records)), learn.routing), 'UI match flag');
 assert.ok(L.sameData(man, build.manifest) && !L.sameData(man, learn.manifest), 'UI match flag manifest');
+// 7. Repeat timing study (results_deep_repeats.json): ratios recomputed from the stored times.
+const rep = json('level-3-deep/results_deep_repeats.json');
+const rr = L.ratioStats(rep.paired.baseline_times_s, rep.paired.indexed_times_s);
+const pairedMedian = L.median(rr.paired);
+assert.ok(Math.abs(pairedMedian - rep.paired.median_paired_ratio) / rep.paired.median_paired_ratio < 0.02, `repeat median ratio ${pairedMedian}`);
+assert.ok(rep.paired.bootstrap_ci95_median_ratio[0] <= rep.paired.median_paired_ratio && rep.paired.median_paired_ratio <= rep.paired.bootstrap_ci95_median_ratio[1]);
+assert.equal(rep.paired.baseline_times_s.length, rep.paired.repetitions);
+assert.ok(rep.sweep.every((r) => r.records_identical), 'sweep records identical');
 console.log('lab ok', { learnRouted: learn.routing.requests_routed, buildRouted: build.routing.requests_routed, unsafe: man.tools_unsafe, flags: man.total_flags,
   deepRouted: L.summariseRouting(idx).requests_routed, share: (rb.cumtime / prof.total * 100).toFixed(1), ratio: rs.medianRatio.toFixed(1),
   pairedRange: [rs.pairedMin.toFixed(1), rs.pairedMax.toFixed(1)], nodeBatchMs: Date.now() - t0 });
