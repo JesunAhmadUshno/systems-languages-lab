@@ -12,7 +12,8 @@ go/ in this folder, labelled UNEXECUTED. No claim says it ran.
 Finding (cProfile, workload below): route_build filters every
 health record and sorts the healthy candidates on every request.
 On the Deep workload that is 20,000 calls, 16,000 list sorts and
-about 92 percent of the routing wall time. The fix is an index
+95.9 percent of the routing time under cProfile (1.780 of 1.856 s
+cumulative in the recorded profile_top of results_deep.json). The fix is an index
 built once per fixed health record set: IndexedRouter keeps the
 best healthy record per model under the exact Build ordering
 (lowest latency, name tie break), so a request is one dict lookup.
