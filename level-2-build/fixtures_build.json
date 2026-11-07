@@ -1,0 +1,257 @@
+{
+  "endpoints_build": [
+    {
+      "error_kind": null,
+      "latency_ms": 40,
+      "model": "chat",
+      "name": "alpha-chat",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "beta-chat",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": "http_error",
+      "latency_ms": 25,
+      "model": "chat",
+      "name": "gamma-chat",
+      "probe_note": "503 unavailable",
+      "probe_ok": false
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 20,
+      "model": "chat",
+      "name": "delta-chat",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 15,
+      "model": "embed",
+      "name": "alpha-embed",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 30,
+      "model": "embed",
+      "name": "beta-embed",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": "timeout",
+      "latency_ms": 50,
+      "model": "vision",
+      "name": "gamma-vision",
+      "probe_note": "probe timeout",
+      "probe_ok": false
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 35,
+      "model": "vision",
+      "name": "epsilon-vision",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 18,
+      "model": "code",
+      "name": "zeta-code",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    },
+    {
+      "error_kind": null,
+      "latency_ms": 18,
+      "model": "code",
+      "name": "eta-code",
+      "probe_note": "200 ok",
+      "probe_ok": true
+    }
+  ],
+  "request_models_build": [
+    "chat",
+    "embed",
+    "vision",
+    "code",
+    "chat",
+    "vision",
+    "code",
+    "embed",
+    "chat",
+    "code",
+    "vision",
+    "unknown"
+  ],
+  "rule_ids_build": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8"
+  ],
+  "severity": {
+    "R1": "high",
+    "R2": "high",
+    "R3": "medium",
+    "R4": "medium",
+    "R5": "low",
+    "R6": "low",
+    "R7": "medium",
+    "R8": "low"
+  },
+  "source": "level-2-build/service_build.py and level-2-build/manifest_build.py",
+  "tools_build": [
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [],
+      "can_execute_shell": false,
+      "description": "Read a file inside the workspace.",
+      "fs_write": false,
+      "name": "file_reader",
+      "network_access": false,
+      "owner": "platform",
+      "permissions": [
+        "fs:read"
+      ],
+      "rate_limit_per_min": 60,
+      "shell_allowlist": [],
+      "version": "1.2.0"
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [],
+      "can_execute_shell": true,
+      "description": "Run shell commands for the user.",
+      "fs_write": false,
+      "name": "shell_runner",
+      "network_access": false,
+      "owner": "",
+      "permissions": [
+        "shell:*"
+      ],
+      "rate_limit_per_min": 2000,
+      "shell_allowlist": [],
+      "version": "*"
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [],
+      "can_execute_shell": false,
+      "description": "Fetch a web page.",
+      "fs_write": false,
+      "name": "web_fetch",
+      "network_access": true,
+      "owner": "data",
+      "permissions": [
+        "net:fetch"
+      ],
+      "rate_limit_per_min": 120,
+      "shell_allowlist": [],
+      "version": "0.9.1"
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [],
+      "can_execute_shell": false,
+      "description": "",
+      "fs_write": true,
+      "name": "code_writer",
+      "network_access": false,
+      "owner": "dev",
+      "permissions": [
+        "fs:write"
+      ],
+      "rate_limit_per_min": 30,
+      "shell_allowlist": [],
+      "version": "latest"
+    },
+    {
+      "allowed_hosts": [
+        "api.internal"
+      ],
+      "allowed_paths": [],
+      "can_execute_shell": false,
+      "description": "Query the internal data API.",
+      "fs_write": false,
+      "name": "data_query",
+      "network_access": true,
+      "owner": "data",
+      "permissions": [
+        "db:read"
+      ],
+      "rate_limit_per_min": 500,
+      "shell_allowlist": [],
+      "version": "2.0.0"
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [
+        "/tmp/work"
+      ],
+      "can_execute_shell": true,
+      "description": "Administration helper.",
+      "fs_write": true,
+      "name": "admin_tool",
+      "network_access": true,
+      "owner": "platform",
+      "permissions": [
+        "*"
+      ],
+      "rate_limit_per_min": 1500,
+      "shell_allowlist": [
+        "ls"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [],
+      "can_execute_shell": false,
+      "description": "Run the vision model.",
+      "fs_write": false,
+      "name": "vision_tool",
+      "network_access": false,
+      "owner": "ml",
+      "permissions": [
+        "model:vision"
+      ],
+      "rate_limit_per_min": null,
+      "shell_allowlist": [],
+      "version": ""
+    },
+    {
+      "allowed_hosts": [],
+      "allowed_paths": [
+        "/tmp/reports"
+      ],
+      "can_execute_shell": false,
+      "description": "Write scoped reports.",
+      "fs_write": true,
+      "name": "scoped_writer",
+      "network_access": false,
+      "owner": "ml",
+      "permissions": [
+        "fs:write"
+      ],
+      "rate_limit_per_min": 100,
+      "shell_allowlist": [],
+      "version": "3.1.0"
+    }
+  ]
+}
