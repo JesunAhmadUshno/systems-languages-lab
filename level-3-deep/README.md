@@ -173,11 +173,14 @@ tests in tests/test_deep_systems.py, hand computed expected
 values) and python3 tests/test_smoke.py printed scaffold smoke
 test PASS.
 
-CI scope, stated honestly: the CI workflow runs the scaffold
-smoke test, the full unit suite, and the Learn, Build, and Deep
-runners on a single Python 3.12 job. There is no CI matrix and no
-CodeQL in this repo, so the local full suite stands as a co-gate.
-Bot reviews are advisory only and are never gates.
+CI scope, as it stands now: the CI workflow (.github/workflows/ci.yml)
+runs on a Python 3.11 and 3.12 matrix: ruff lint (scope in ruff.toml),
+the scaffold smoke test, the Learn, Build, and Deep unit suites, and
+the Learn, Build, and Deep runners. CodeQL runs separately
+(.github/workflows/codeql.yml). When this level shipped, CI was a
+single Python 3.12 job without CodeQL; the matrix, ruff, and CodeQL
+arrived with the Actions polish pack. The local full suite stays a
+co-gate. Bot reviews are advisory only and are never gates.
 
 ## Grade: 7,900 of 10,000
 
