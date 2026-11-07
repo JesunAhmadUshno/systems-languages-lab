@@ -2,6 +2,15 @@
 
 Systems languages for ML platform work: a Go service and a Rust CLI.
 
+Live dashboard: https://jesunahmadushno.github.io/systems-languages-lab/
+
+The dashboard (built from site/) reruns the routing service, the manifest
+checker, the cancellable pool and the Deep bottleneck race in the browser
+with JS ports of the Python reference. A known-answer check inside
+`npm run build` proves the ports reproduce every count in the three
+results files. Browser timings are labelled as browser timings; Go and
+Rust remain UNEXECUTED. Research grade and open gaps: docs/research-review.md.
+
 Status: Learn DONE 2026-11-05, Build DONE 2026-11-05, and Deep DONE 2026-11-05, v1.0 (all executed in Python; Go and Rust toolchains missing on the build VM, see the level READMEs).
 Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
 
@@ -45,4 +54,4 @@ Rust sources are UNEXECUTED, every executed level is a Python
 reference only, all probes and manifests are scripted fixtures,
 and the Deep speedup is an order of magnitude effect, not a
 constant. Channel outcomes and per-piece publicity grades are
-logged in PUBLICITY.md. Docs page: https://jesunahmadushno.github.io/systems-languages-lab/
+logged in PUBLICITY.md. Live dashboard (replaces the earlier one-page docs summary at the same URL): https://jesunahmadushno.github.io/systems-languages-lab/
