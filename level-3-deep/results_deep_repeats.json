@@ -1,0 +1,128 @@
+{
+  "machine": {
+    "cpu_count": 20,
+    "machine": "aarch64",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "python": "3.12.3"
+  },
+  "method": "perf_counter; paired arms interleaved per repetition after one warmup each",
+  "paired": {
+    "baseline_median_s": 0.1228,
+    "baseline_times_s": [
+      0.1238,
+      0.1228,
+      0.1227,
+      0.1228,
+      0.1227,
+      0.1226,
+      0.1226,
+      0.1226,
+      0.1227,
+      0.1229,
+      0.1227,
+      0.1226,
+      0.1229,
+      0.1228,
+      0.1225,
+      0.1229,
+      0.1221,
+      0.1219,
+      0.1223,
+      0.1227,
+      0.123,
+      0.1224,
+      0.1228,
+      0.1228,
+      0.1228,
+      0.1229,
+      0.1229,
+      0.1228,
+      0.1228,
+      0.1229
+    ],
+    "bootstrap": {
+      "method": "percentile",
+      "resamples": 10000,
+      "seed": 0
+    },
+    "bootstrap_ci95_median_ratio": [
+      37.53,
+      38.13
+    ],
+    "indexed_median_s": 0.0032,
+    "indexed_times_s": [
+      0.0033,
+      0.0032,
+      0.0032,
+      0.0032,
+      0.0032,
+      0.0029,
+      0.0032,
+      0.0032,
+      0.0033,
+      0.0033,
+      0.0033,
+      0.0032,
+      0.0033,
+      0.0031,
+      0.0032,
+      0.0033,
+      0.0032,
+      0.0031,
+      0.0032,
+      0.0033,
+      0.0033,
+      0.0032,
+      0.0032,
+      0.0033,
+      0.0031,
+      0.0033,
+      0.0033,
+      0.0033,
+      0.0033,
+      0.0033
+    ],
+    "median_paired_ratio": 37.84,
+    "paired_ratio_max": 41.78,
+    "paired_ratio_min": 36.81,
+    "repetitions": 30
+  },
+  "recorded_on": "2026-11-07",
+  "sweep": [
+    {
+      "baseline_median_s": 0.0305,
+      "endpoints": 50,
+      "indexed_median_s": 0.0025,
+      "records_identical": true,
+      "requests": 20000
+    },
+    {
+      "baseline_median_s": 0.0593,
+      "endpoints": 100,
+      "indexed_median_s": 0.0025,
+      "records_identical": true,
+      "requests": 20000
+    },
+    {
+      "baseline_median_s": 0.1219,
+      "endpoints": 200,
+      "indexed_median_s": 0.0025,
+      "records_identical": true,
+      "requests": 20000
+    },
+    {
+      "baseline_median_s": 0.256,
+      "endpoints": 400,
+      "indexed_median_s": 0.0025,
+      "records_identical": true,
+      "requests": 20000
+    },
+    {
+      "baseline_median_s": 0.5353,
+      "endpoints": 800,
+      "indexed_median_s": 0.0026,
+      "records_identical": true,
+      "requests": 20000
+    }
+  ]
+}

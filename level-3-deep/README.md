@@ -91,6 +91,20 @@ wall times. Its deterministic section (counts, names, equality
 flags, profile rows apart from their times) is the part verified
 identical, and the runner checks that on every run.
 
+## Repeat timing run (added 2026-11-07, different machine)
+
+timing_repeats.py adds what the recorded run lacks, without touching
+results_deep.json: 30 interleaved paired repetitions on the same
+workload with a percentile bootstrap 95 percent interval on the
+median paired ratio, and a registry size sweep from 50 to 800
+endpoints. It ran on an aarch64 Linux machine with Python 3.12.3,
+not the Muse VM, so its seconds are not comparable to the table
+above; its ratios and scaling shape are the point. Output, with the
+machine recorded: results_deep_repeats.json in this folder. The
+sweep confirms the records stay identical at every size and that
+baseline time grows with registry size while indexed time stays
+flat (see the file for the numbers).
+
 ## Go pprof study design (UNEXECUTED, not run)
 
 The design that would run on a machine with Go, in order, also
