@@ -164,7 +164,7 @@ function Routing() {
   const narrow = useNarrow();
   const W = narrow ? 340 : 460, rowH = 26, H = records.length * rowH + 24, l = 120, max = Math.max(4, ...Object.values(sum.per_endpoint));
   return (
-    <section id="routing" className="card window reveal" data-title="healthsvc.go — python reference">
+    <section id="routing" className="card window reveal" data-title="healthsvc.go · python reference">
       <div className="head">
         <div>
           <p className="eyebrow">Live playground · health and routing</p>
@@ -252,7 +252,7 @@ function Manifest() {
   const rec = recs[sel];
   const maxRule = 4;
   return (
-    <section id="manifest" className="card window reveal" data-title="manifest_checker.rs — python reference">
+    <section id="manifest" className="card window reveal" data-title="manifest_checker.rs · python reference">
       <div className="head">
         <div>
           <p className="eyebrow">Live checker · eight rules</p>
@@ -506,7 +506,7 @@ function Race() {
   const sx = (n) => p.l + ((Math.log2(n) - Math.log2(50)) / (Math.log2(800) - Math.log2(50))) * (W - p.l - p.r);
   const sy = (v) => p.t + (1 - v / ymax) * (H - p.t - p.b);
   return (
-    <section id="race" className="card window reveal" data-title="bench.html — measured in your browser">
+    <section id="race" className="card window reveal" data-title="bench.html · measured in your browser">
       <div className="head">
         <div>
           <p className="eyebrow">Live benchmark · your browser, this run</p>
@@ -649,7 +649,7 @@ function Reproduce() {
     ['ROADMAP.md', 'Roadmap', 'v1.1 toolchain port'],
   ];
   return (
-    <section id="reproduce" className="card window reveal" data-title="Terminal — zsh">
+    <section id="reproduce" className="card window reveal" data-title="Terminal · zsh">
       <p className="eyebrow">Reproduce it</p>
       <h2>Python 3 stdlib only: clone, test, rerun.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
