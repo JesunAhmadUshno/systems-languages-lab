@@ -7,7 +7,7 @@ This VM has no Rust toolchain (checked 2026-11-05: rustc not found), so
 this file is the executed reference implementation of the same checker
 logic in Python stdlib. The Rust teaching source sits beside this file in
 rust/manifest_checker.rs and is labelled unexecuted there and in the
-level README. No claim in this repo says the Rust source was compiled
+REPORT.md. No claim in this repo says the Rust source was compiled
 or run.
 
 Checker rules (each flag names its rule id):

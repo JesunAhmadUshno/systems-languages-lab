@@ -58,7 +58,8 @@ def paired_study(reps=30, resamples=10000, seed=0):
         "median_paired_ratio": round(statistics.median(ratios), 2),
         "paired_ratio_min": round(min(ratios), 2),
         "paired_ratio_max": round(max(ratios), 2),
-        "bootstrap_ci95_median_ratio": [round(boot[int(0.025 * resamples)], 2), round(boot[int(0.975 * resamples) - 1], 2)],
+        "bootstrap_ci95_median_ratio": [round(boot[int(0.025 * resamples)], 2),
+                                        round(boot[int(0.975 * resamples) - 1], 2)],
         "bootstrap": {"resamples": resamples, "seed": seed, "method": "percentile"},
     }
 

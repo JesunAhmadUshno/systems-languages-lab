@@ -1,11 +1,11 @@
 name: Pages
 
-# Builds the live dashboard in site/ from the committed level results, READMEs and sources and publishes it to GitHub Pages.
+# Builds the live dashboard in site/ from the committed level results, README.md, REPORT.md, PROPOSAL.md and sources and publishes it to GitHub Pages.
 # The dashboard replaces the old one-page Jekyll summary (docs/index.md) at the same URL; Pages must use the GitHub Actions source.
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'level-*/**', 'tests/**', 'ROADMAP.md', '.github/workflows/pages.yml']
+    paths: ['site/**', 'level-*/**', 'tests/**', 'README.md', 'REPORT.md', 'PROPOSAL.md', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:

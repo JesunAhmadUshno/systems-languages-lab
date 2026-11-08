@@ -149,18 +149,9 @@ export function parseProfile(lines) {
   return { total, rows };
 }
 
-// Reads "## Grade: 7,900 of 10,000" and its itemized "(minus N)" deductions from a level README.
-const num = (s) => +s.replace(/,/g, '');
-export function parseGrade(md) {
-  const g = md.match(/## Grade: ([\d,]+) of ([\d,]+)/);
-  const sec = md.slice(md.indexOf('Deductions', g.index), md.indexOf('Zero-tolerance', g.index));
-  const items = sec.split(/\n- /).slice(1).map((t) => {
-    const text = t.replace(/\s+/g, ' ').trim();
-    const m = text.match(/\(minus ([\d,]+)\)/);
-    return { text: text.replace(/\s*\(minus [\d,]+\)\.?$/, '.').replace(/\.\.$/, '.'), minus: m ? num(m[1]) : 0 };
-  });
-  return { grade: num(g[1]), scale: num(g[2]), items };
-}
+// Lifecycle lines "- Stage: STATUS date" and the verdict level from README.md.
+export const parseLifecycle = (md) => [...md.matchAll(/^- (\w+): ([A-Z]+)(?: (\d{4}-\d{2}-\d{2}))?$/gm)].map((m) => m.slice(1));
+export const parseVerdict = (md) => (md.match(/^\*\*Verdict\.\*\* ([^.]+)/m) || [])[1];
 
 // Numbered list items ("1. ...") from a Markdown block, joined across wrapped lines.
 export function parseNumbered(md) {

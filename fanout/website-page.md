@@ -22,8 +22,7 @@ step.
 One scope fact, stated plainly. Go and Rust sources are UNEXECUTED at every level: go, rustc, and cargo were not found on the build VM, nothing was installed, and no Go or Rust code was compiled, run, or tested. Every executed level is a Python standard library reference only, run on the Muse VM. All health probes and tool manifests are scripted fixtures, authored for teaching: no real HTTP endpoint was served or probed, and no real MCP manifest file was read. The Deep speedup is an order of magnitude effect, not a constant: timing on a shared VM varies by run, and the exact ratio is a property of the recorded run.
 
 Status: v1.0, 2026-11-05. Learn, Build, and Deep are done.
-Grades on the house 10,000 scale: Learn 7,900, Build 7,800,
-Deep 7,900. Total tests: 46 checks, plus the scaffold smoke test.
+Total tests: 46 checks, plus the scaffold smoke test.
 
 ## Results (Python reference only)
 

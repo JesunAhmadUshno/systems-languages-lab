@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "systems-languages-lab: a Python reference and a profile-and-fix study for a Go routing service and a Rust manifest checker"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/systems-languages-lab"
+url: "https://jesunahmadushno.github.io/systems-languages-lab/"
+license: Apache-2.0
+version: "1.0"
+date-released: 2026-11-05

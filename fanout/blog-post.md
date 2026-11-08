@@ -24,18 +24,17 @@ Learn: a Python reference for a Go-shaped health and routing
 service (worker pool, registry, router) and a Rust-shaped tool
 manifest checker (5 rules). Health 4 of 6 endpoints healthy,
 router 6 of 8 requests routed, checker 4 of 6 tools unsafe with
-7 flags. Grade 7,900 of 10,000.
+7 flags.
 
 Build: a cancellable worker pool with structured error chains
 and an extended 8 rule checker with severities, still in Python.
 Health 8 of 10 endpoints healthy with 2 classified errors, a
 pre-cancelled run probing 0 and skipping 10, router 11 of 12
 requests routed, checker 5 of 8 tools unsafe with 14 flags.
-Grade 7,800 of 10,000.
 
 Deep: a profile and fix bottleneck study in Python, a Rust Rule
 trait sharing design as UNEXECUTED source, and a Go pprof study
-design as UNEXECUTED source. Grade 7,900 of 10,000.
+design as UNEXECUTED source.
 
 ## The main result
 
