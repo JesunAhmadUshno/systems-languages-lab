@@ -4,7 +4,7 @@
 // net/http/pprof handlers registered by import side effect on a
 // diagnostics only listener, kept off the service listener, plus
 // a printed copy of the study steps so a runner on a Go machine
-// follows the same plan the README publishes.
+// follows the same plan REPORT.md publishes.
 package main
 
 import (

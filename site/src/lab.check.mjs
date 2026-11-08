@@ -1,5 +1,5 @@
 // Known-answer check, run by `npm run build` before vite: the JS ports in lab.js must
-// reproduce every count in the three recorded results files and the README figures.
+// reproduce every count in the three recorded results files and the REPORT.md figures.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as L from './lab.js';
@@ -11,7 +11,8 @@ const learn = json('level-1-learn/results_learn.json');
 const build = json('level-2-build/results_build.json');
 const deep = json('level-3-deep/results_deep.json');
 const fx = json('level-2-build/fixtures_build.json');
-const deepMd = read('level-3-deep/README.md');
+const deepMd = L.section(read('REPORT.md'), 'Deep study record');
+assert.ok(deepMd.length > 1000, 'REPORT.md Deep study record section');
 
 // 1. Routing: Learn 6 of 8 (beta-chat 4, alpha-embed 2), Build 11 of 12, full record lists.
 for (const [name, res] of [['learn', learn], ['build', build]]) {
@@ -59,7 +60,7 @@ const t0 = Date.now();
 const tm = L.timeMedian(() => L.runRouting(reqs, recs), 2, () => Date.now());
 assert.equal(tm.times.length, 2);
 
-// 5. Recorded profile and timing: 95.9% share, median ratio 31.8x as the README states.
+// 5. Recorded profile and timing: 95.9% share, median ratio 31.8x as REPORT.md states.
 const prof = L.parseProfile(deep.profile_top);
 const rb = prof.rows.find((r) => r.fn.includes('(route_build)'));
 assert.equal(prof.total, 1.856);
@@ -73,16 +74,13 @@ assert.ok(deepMd.includes(`${rs.medianRatio.toFixed(1)} times faster`), 'README 
 assert.ok(rs.pairedMin < rs.medianRatio && rs.medianRatio < rs.pairedMax);
 assert.ok(/quieter run measured baseline\s+([\d.]+) s and indexed ([\d.]+) s/.test(deepMd), 'variance note');
 
-// 6. Grades, deductions and test counts parsed from the READMEs.
-for (const [p, want, ded] of [['level-1-learn/README.md', 7900, 6], ['level-2-build/README.md', 7800, 6], ['level-3-deep/README.md', 7900, 7]]) {
-  const g = L.parseGrade(read(p));
-  assert.equal(g.grade, want, p);
-  assert.equal(g.items.length, ded, `${p} deductions`);
-  assert.equal(g.items.reduce((s, i) => s + i.minus, 0), g.scale - g.grade, `${p} deductions sum`);
-}
+// 6. Lifecycle, verdict, test counts and the next cycle parsed from README.md, REPORT.md and PROPOSAL.md.
+const readme = read('README.md');
+assert.deepEqual(L.parseLifecycle(readme).map((s) => s[0]), ['Question', 'Proposal', 'Baseline', 'Build', 'Evaluate', 'Report', 'Review', 'Release']);
+assert.ok(L.parseVerdict(readme), 'README verdict line');
 const levelTests = ['test_learn_systems.py', 'test_build_systems.py', 'test_deep_systems.py'].map((f) => read(`tests/${f}`));
-assert.equal(L.countTests(levelTests), +deepMd.match(/ran (\d+) tests OK/)[1], 'test count vs Deep README');
-assert.equal(L.parseNumbered(read('ROADMAP.md')).length, 6);
+assert.equal(L.countTests(levelTests), +deepMd.match(/ran (\d+) tests OK/)[1], 'test count vs REPORT.md Deep record');
+assert.equal(L.parseNumbered(L.section(read('PROPOSAL.md'), 'Next cycle (the v1.1 backlog, from ROADMAP.md)')).length, 6);
 assert.equal(L.parseGoSteps(read('level-3-deep/go/internal/profile/profile.go')).length, 7);
 
 assert.ok(L.sameData(L.summariseRouting(L.runRouting(learn.routing_records.map((r) => r.model), learn.health_records)), learn.routing), 'UI match flag');

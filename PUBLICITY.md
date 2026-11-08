@@ -1,21 +1,31 @@
 # PUBLICITY: systems-languages-lab (P21)
 
 Publicity log under the documentation and publishing standard,
-Section 7. Every finished level produces its written fan-out set,
-each piece graded on the 1,000-point publicity rubric (accuracy 300,
-research 200, gap fit 200, clarity 150, reach format 150), ship line
-900. Drafts are prepared by the loop. Actual social posting follows
+Section 7. Every finished level produces its written fan-out set.
+Drafts are prepared by the loop. Actual social posting follows
 the standing platform rules and gates. The loop itself never posts
 to social.
 
 Project state: v1.0, Learn, Build, and Deep done 2026-11-05,
-46 checks passing plus the scaffold smoke test. Level grades on
-record: Learn 7,900 of 10,000, Build 7,800 of 10,000,
-Deep 7,900 of 10,000. Every executed level is a Python reference
+46 checks passing plus the scaffold smoke test. Every executed level is a Python reference
 only: Go and Rust sources are UNEXECUTED at every level, the
 toolchains were missing on the build VM, all probes and manifests
 are scripted fixtures, and the Deep speedup is an order of
 magnitude effect, not a constant.
+
+## Fan-out set (from the v1.0 README)
+
+Written fan-out set for v1.0, in fanout/: blog post, tutorial,
+website page copy, LinkedIn draft (held, not posted), paper
+candidate brief (profile-and-fix bottleneck note; submission is
+Jesun's tap, nothing submitted), and release notes covering
+v0.1, v0.5, and v1.0. Every piece states plainly that Go and
+Rust sources are UNEXECUTED, every executed level is a Python
+reference only, all probes and manifests are scripted fixtures,
+and the Deep speedup is an order of magnitude effect, not a
+constant. Channel outcomes are logged in this file. Live dashboard (replaces the earlier one-page docs summary at the same URL): https://jesunahmadushno.github.io/systems-languages-lab/
+
+Grading of each piece is kept internal and is not shown here.
 
 ## Actions polish pack (2026-11-05)
 
@@ -50,23 +60,6 @@ unexecuted) so Dependabot pip has a manifest to watch.
 | PyPI publishing | Held: needs a PyPI token, a new credential. Jesun's tap only. Not set up. |
 | Social channels (LinkedIn, X, Facebook, Instagram, Threads) | Held: no posts made. The loop never posts to social; Threads waits for Jesun's tap per post under the standing gates. |
 
-Publicity grade for this polish pack log piece, on the 1,000
-point rubric (accuracy 300, research 200, gap fit 200, clarity
-150, reach format 150), ship line 900:
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| PUBLICITY.md polish pack section (2026-11-05) | 295 | 180 | 195 | 145 | 95 | 910 |
-
-At or above the 900 ship line. Named deductions: research minus
-20, because the pack is a standard applied across repos and this
-section records its application rather than new research; reach
-minus 55, because the docs page is copy in this pull request with
-no live Pages claim yet, PyPI publishing is held, and no social
-channel carries this piece by the standing gates; accuracy minus
-5, gap fit minus 5, and clarity minus 5 for summary compression
-of the full pack standard, which lives in the batch files.
-
 ## v1.0 fan-out set (2026-11-05)
 
 Written fan-out set prepared in this cycle, in fanout/. Every
@@ -82,9 +75,6 @@ smoke test) passes, Learn and Build results files stayed
 byte-identical across the runners, and the Deep results file
 differs only in its timing section across runs by design, with
 its timing-only diff restored.
-
-Overall fan-out grade: 9,452 of 10,000 (the mean of the six
-piece grades below, scaled to 10,000: 5,671 of 6,000).
 
 Jev claim_check on the blog main results claim (extracted byte
 exact from fanout/blog-post.md by script): model jev-1.13.0,
@@ -113,35 +103,3 @@ jev-p21-fanout-claim-results-2026-11-05.json).
 | Threads | Social post | Held: awaiting Jesun's tap. Every Threads post needs his one-tap pre-approval, hash-locked on exact text and media. |
 | Video | 3D playbook video | Held: flagship video production runs through the January engine queue. No video produced in this cycle. |
 | Book | Book chapter | Held: chapter drafted from finished projects under the journey publishing plan; no chapter file is claimed in this cycle. |
-
-Per-piece publicity grades, on the 1,000-point rubric (accuracy
-300, research 200, gap fit 200, clarity 150, reach format 150),
-ship line 900:
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| fanout/blog-post.md | 295 | 183 | 195 | 143 | 137 | 953 |
-| fanout/tutorial.md | 298 | 184 | 195 | 148 | 135 | 960 |
-| fanout/website-page.md | 295 | 174 | 190 | 145 | 140 | 944 |
-| fanout/linkedin-post.md | 290 | 168 | 190 | 143 | 145 | 936 |
-| fanout/paper-candidate.md | 293 | 186 | 190 | 140 | 123 | 932 |
-| fanout/release-notes.md | 298 | 182 | 186 | 145 | 135 | 946 |
-| PUBLICITY.md fan-out section (this section) | 295 | 175 | 190 | 145 | 130 | 935 |
-
-All six fan-out pieces are at or above the 900 ship line. Named
-deductions: accuracy loses 2 to 10 per piece for summary
-compression of the level READMEs (the full method, oracle, and
-per-object tables live in the level folders, not in the fan-out
-pieces); research loses 14 to 32 per piece because the fan-out
-reports measured repo work and names prior art from DOSSIER.md
-and NOVELTY.md rather than adding new external research, and
-the paper brief names no venue and records that the SPEC
-records no paper angle for this project; gap fit loses 5 to 15
-per piece because the unexecuted Go and Rust tracks cap how
-far any piece can speak to real systems language roles;
-clarity loses 2 to 10 per piece for the repeated unexecuted
-and scripted fixture lines, which are mandatory honesty and
-cost reading flow; reach loses 5 to 27 per piece because every
-social channel is held under the standing gates, the paper is
-an unsubmitted brief, and no live website or blog publication
-exists yet, so reach is draft reach, not published reach.

@@ -4,10 +4,9 @@ import build from '../../level-2-build/results_build.json';
 import deep from '../../level-3-deep/results_deep.json';
 import fx from '../../level-2-build/fixtures_build.json';
 import rep from '../../level-3-deep/results_deep_repeats.json';
-import learnMd from '../../level-1-learn/README.md?raw';
-import buildMd from '../../level-2-build/README.md?raw';
-import deepMd from '../../level-3-deep/README.md?raw';
-import roadmapMd from '../../ROADMAP.md?raw';
+import readme from '../../README.md?raw';
+import reportMd from '../../REPORT.md?raw';
+import proposalMd from '../../PROPOSAL.md?raw';
 import profileGo from '../../level-3-deep/go/internal/profile/profile.go?raw';
 import * as L from './lab.js';
 
@@ -22,11 +21,14 @@ const RB = PROFILE.rows.find((r) => r.fn.includes('(route_build)'));
 const SHARE = (RB.cumtime / PROFILE.total) * 100;
 const TB = deep.timing.baseline, TI = deep.timing.indexed;
 const RATIO = L.ratioStats(TB.times_s, TI.times_s);
+const deepMd = L.section(reportMd, 'Deep study record');
+const STAGES = L.parseLifecycle(readme);
+const VERDICT = L.parseVerdict(readme);
 const QUIET = deepMd.match(/quieter run measured baseline\s+([\d.]+) s and indexed ([\d.]+) s/);
 const RECORDED = deepMd.match(/## Results \(measured ([^,]+), ([^,]+), (Python [\d.]+)/);
 const D = deep.deterministic;
 
-const SECTIONS = [['top', 'Overview', '◎'], ['routing', 'Routing', '⇢'], ['manifest', 'Manifests', '✓'], ['cancel', 'Cancel', '⏹'], ['profile', 'Profile', '▤'], ['race', 'Race', '⚡'], ['sources', 'Go & Rust', '{}'], ['grades', 'Grades', '★'], ['reproduce', 'Reproduce', '❯_']];
+const SECTIONS = [['top', 'Overview', '◎'], ['routing', 'Routing', '⇢'], ['manifest', 'Manifests', '✓'], ['cancel', 'Cancel', '⏹'], ['profile', 'Profile', '▤'], ['race', 'Race', '⚡'], ['sources', 'Go & Rust', '{}'], ['status', 'Status', '★'], ['reproduce', 'Reproduce', '❯_']];
 
 function useReveal() {
   useEffect(() => {
@@ -45,11 +47,10 @@ function MenuBar() {
     <div className="menubar" role="banner">
       <span className="apple" aria-hidden="true">◆</span>
       <a className="app" href="#top">Systems Languages Lab</a>
-      <a className="m" href={blob('SPEC.md')}>Spec</a>
-      <a className="m" href={blob('level-3-deep/README.md')}>Deep study</a>
-      <a className="m" href={blob('docs/research-review.md')}>Research review</a>
+      <a className="m" href={blob('PROPOSAL.md')}>Proposal</a>
+      <a className="m" href={blob('REPORT.md')}>Report</a>
       <span className="spacer" />
-      <span className="status"><i /> Python reference executed</span>
+      <span className="status"><i /> {VERDICT}</span>
       <a href={REPO}>GitHub ↗</a>
       <span className="clock">{now.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })}</span>
     </div>
@@ -104,11 +105,11 @@ export default function App() {
       <Profile />
       <Race />
       <Sources />
-      <Grades />
+      <Status />
       <Reproduce />
       <Dock />
       <footer>
-        Code: Apache-2.0. Every number on this page is read at build time from the level results JSON, READMEs and sources in the repo, or computed live in your browser by JS ports of the Python reference. Go and Rust sources are UNEXECUTED.
+        Code: Apache-2.0. Every number on this page is read at build time from the level results JSON, README.md, REPORT.md, PROPOSAL.md and sources in the repo, or computed live in your browser by JS ports of the Python reference. Go and Rust sources are UNEXECUTED.
       </footer>
     </div>
   );
@@ -426,7 +427,7 @@ function Profile() {
       </div>
       <p className="banner">
         <b>Shared-VM variance.</b> Five repetitions on a shared VM is a thin sample, so read the ratio as an order of magnitude, not a constant.
-        {QUIET && <> A quieter study run recorded in the Deep README measured {QUIET[1]} s and {QUIET[2]} s, a {(QUIET[1] / QUIET[2]).toFixed(0)}× ratio.</>} The recorded run carries no confidence interval; the repeat run below adds one.
+        {QUIET && <> A quieter study run recorded in REPORT.md measured {QUIET[1]} s and {QUIET[2]} s, a {(QUIET[1] / QUIET[2]).toFixed(0)}× ratio.</>} The recorded run carries no confidence interval; the repeat run below adds one.
       </p>
       <RepeatRun />
     </section>
@@ -615,25 +616,22 @@ function Sources() {
   );
 }
 
-function Grades() {
-  const levels = [['Learn', learnMd, 'level-1-learn/README.md'], ['Build', buildMd, 'level-2-build/README.md'], ['Deep', deepMd, 'level-3-deep/README.md']].map(([n, md, p]) => ({ n, p, ...L.parseGrade(md) }));
-  const backlog = L.parseNumbered(roadmapMd);
+function Status() {
+  const backlog = L.parseNumbered(L.section(proposalMd, 'Next cycle (the v1.1 backlog, from ROADMAP.md)'));
+  const done = STAGES.filter(([, st]) => st === 'DONE').length;
   return (
-    <section id="grades" className="card window reveal" data-title="GRADES.md">
-      <p className="eyebrow">Self-assessment and gaps</p>
-      <h2>Recorded grades, with every deduction itemized.</h2>
-      <p className="sub">Parsed from each level README. The largest deductions are the same at every level: no Go or Rust ever ran.</p>
-      <div className="grades">
-        {levels.map((g) => (
-          <div className="tile" key={g.n}>
-            <div className="head" style={{ marginBottom: 4 }}><h3>{g.n}</h3><a className="hint" href={blob(g.p)}>README ↗</a></div>
-            <div className="num">{fmt(g.grade)}<small> / {fmt(g.scale)}</small></div>
-            <div className="track" style={{ margin: '8px 0 12px' }}><div className="fill" style={{ width: `${(g.grade / g.scale) * 100}%`, background: 'var(--primary)' }} /></div>
-            <ul className="ded">{g.items.map((it, i) => <li key={i}><b>−{fmt(it.minus)}</b><span>{it.text}</span></li>)}</ul>
+    <section id="status" className="card window reveal" data-title="LIFECYCLE">
+      <p className="eyebrow">Lifecycle and verdict</p>
+      <h2>{done} of {STAGES.length} stages done. Verdict: <em>{VERDICT}</em>.</h2>
+      <p className="sub">Stages and verdict are read from README.md; the plan is PROPOSAL.md. The Go service and the Rust CLI have never run, so the verdict stays at Draft until they do.</p>
+      <div className="stages">
+        {STAGES.map(([name, st, date], i) => (
+          <div className="tile" key={name}>
+            <div className="head" style={{ marginBottom: 6 }}><h3>{i + 1}. {name}</h3><span className={`pill ${st === 'DONE' ? 'good' : 'warn'}`}>{st}{date ? ` ${date}` : ''}</span></div>
           </div>
         ))}
       </div>
-      <h3 style={{ marginTop: 20 }}>v1.1 backlog (ROADMAP.md)</h3>
+      <h3 style={{ marginTop: 20 }}>Next cycle (PROPOSAL.md)</h3>
       <ol className="steps" style={{ marginTop: 12 }}>{backlog.map((b, i) => <li key={i}><span className="n">{i + 1}</span><div className="hint">{b}</div></li>)}</ol>
     </section>
   );
@@ -645,8 +643,8 @@ function Reproduce() {
     ['level-2-build/results_build.json', 'results_build.json', 'Build: pool, errors, eight rules'],
     ['level-3-deep/results_deep.json', 'results_deep.json', 'Deep: profile and timing'],
     ['level-3-deep/DEEP-SPEC.md', 'Deep spec', 'Hypothesis written before the run'],
-    ['docs/research-review.md', 'Research review', 'Rubric grade and open gaps'],
-    ['ROADMAP.md', 'Roadmap', 'v1.1 toolchain port'],
+    ['REPORT.md', 'Report', 'Hypotheses scored, misses shown'],
+    ['PROPOSAL.md', 'Proposal', 'Scope and the next cycle (not locked)'],
   ];
   return (
     <section id="reproduce" className="card window reveal" data-title="Terminal · zsh">

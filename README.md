@@ -1,57 +1,85 @@
 # systems-languages-lab
 
-Systems languages for ML platform work: a Go service and a Rust CLI.
+**Question.** What do Go and Rust buy over Python for two small ML
+platform tools, a model-endpoint health and routing service and an MCP
+tool-manifest checker, and does profiling the routing service find a
+bottleneck that can be removed without changing any routing decision?
+
+**Headline.** No result yet on Go and Rust: their sources have never
+been compiled or run. In the Python reference, route_build held 95.9
+percent of routing time under cProfile, and a per-model index made
+routing 37.8 times faster (median paired ratio over 30 repetitions,
+95 percent bootstrap interval 37.5 to 38.1, one aarch64 machine) with
+every routing record identical to the baseline.
+
+**Field.** Software product. **Job family.** ML platform and
+infrastructure engineering (Go and Rust).
+
+**Verdict.** Draft, not pre-registered. The Python reference of both
+tools runs end to end from one command and its tests pass in CI on
+Python 3.11 and 3.12, but the system under study, the Go service and
+the Rust CLI, has never been compiled or run, so Functional waits for
+that first run. No plan was locked before the results, so the repo is
+capped at Functional until a locked confirmatory cycle.
 
 Live dashboard: https://jesunahmadushno.github.io/systems-languages-lab/
 
-The dashboard (built from site/) reruns the routing service, the manifest
-checker, the cancellable pool and the Deep bottleneck race in the browser
-with JS ports of the Python reference. A known-answer check inside
-`npm run build` proves the ports reproduce every count in the three
-results files. Browser timings are labelled as browser timings; Go and
-Rust remain UNEXECUTED. Research grade and open gaps: docs/research-review.md.
+## Reproduce
 
-Status: Learn DONE 2026-11-05, Build DONE 2026-11-05, and Deep DONE 2026-11-05, v1.0 (all executed in Python; Go and Rust toolchains missing on the build VM, see the level READMEs).
-Project: P21. Fleet node: BlackBoxV3. Wave: Wave 7.
+```text
+python3 -m unittest discover -s tests -v
+python3 level-1-learn/run_learn.py && python3 level-2-build/run_build.py
+cd site && npm ci && npm run build
+```
 
-## Start here
+Python 3 standard library only. The test run includes
+tests/test_results_regenerate.py, which rebuilds the Learn and Build
+results and the Build fixture export in memory and checks they match
+the committed files byte for byte, and rebuilds the deterministic
+section of the Deep results. `python3 level-3-deep/run_deep.py` reruns
+the timed study, but it rewrites the recorded results_deep.json with
+this machine's timings, so restore it afterwards with
+`git checkout level-3-deep/results_deep.json`. The site build runs a
+JavaScript known-answer check against every results file first.
 
-1. Read SPEC.md for scope and acceptance criteria.
-2. Read DOSSIER.md for the past, present, and future of this problem (v1).
-3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+Go and Rust: go, rustc and cargo were not on the build VM. Every Go
+and Rust file is labelled UNEXECUTED and no result comes from them.
 
-## Level map
+## Lifecycle
 
-- Level 1, Learn: the core idea, built small and clean, with a teaching path.
-- Level 2, Build: a real working system other people can run.
-- Level 3, Deep: benchmarks, optimization, evaluation, hard cases.
+- Question: DONE 2026-11-04
+- Proposal: OPEN
+- Baseline: DONE 2026-11-05
+- Build: OPEN
+- Evaluate: OPEN
+- Report: OPEN
+- Review: OPEN
+- Release: OPEN
 
-## Benchmarks
+Question: SPEC scaffold, commit 252ca81. Proposal: PROPOSAL.md is a
+draft, never locked. Baseline: the Python reference of both tools and
+the recorded Deep timing run. Build: the Go and Rust tracks are written
+but never compiled. Release: the tags v0.1, v0.5 and v1.0 predate this
+standard and are kept; they are not a v1.0 verdict under it.
 
-| Test | Result |
+## Layout
+
+| Path | What it holds |
 | --- | --- |
-| Learn (Python reference, Muse VM, 2026-11-05) | Health worker 4 of 6 endpoints healthy; router 6 of 8 requests routed; manifest checker 4 of 6 tools unsafe, 7 flags. Full record in level-1-learn/results_learn.json. |
-| Build (Python reference, Muse VM, 2026-11-05) | Cancellable pool 8 of 10 endpoints healthy, 2 classified errors, pre-cancelled run 0 probed and 10 skipped; router 11 of 12 requests routed; extended checker 5 of 8 tools unsafe, 14 flags across 8 rules. Full record in level-2-build/results_build.json. |
-| Deep (Python reference, Muse VM, 2026-11-05) | Profile and fix study on 200 endpoints and 20,000 requests: route_build 95.9 percent of routing time under cProfile; indexed router median 2.434 s to 0.0765 s per batch (5 pooled repetitions, 1 warmup), routing records identical to baseline. Rust traits design and Go pprof design ship as UNEXECUTED sources. Full record in level-3-deep/results_deep.json. |
+| PROPOSAL.md | Question, scope, hypotheses (not locked), prior work, next cycle (was SPEC.md, NOVELTY.md, DOSSIER.md, ROADMAP.md) |
+| REPORT.md | Hypotheses scored with misses, where each number comes from, the Learn, Build and Deep records, review notes |
+| level-1-learn/ | Python reference: health and routing service, five-rule manifest checker, runner; results_learn.json (results); Go and Rust teaching sources (UNEXECUTED) |
+| level-2-build/ | Python reference: cancellable pool, eight-rule checker, runner, fixture export; results_build.json and fixtures_build.json (results); BUILD-SPEC.md (design); Go module and Cargo project (UNEXECUTED) |
+| level-3-deep/ | Profile-and-fix study: profile_deep.py, run_deep.py, timing_repeats.py; results_deep.json and results_deep_repeats.json (evidence and results); DEEP-SPEC.md (design); Go pprof and Rust trait designs (UNEXECUTED) |
+| tests/ | Unit tests per level, layout and no-public-grade test, results regeneration test, fixture parity test |
+| docs/decisions/ | Records of hard-to-reverse choices |
+| site/ | The live dashboard, built from the files above |
+| fanout/, PUBLICITY.md | Drafted posts and the channel log (nothing posted) |
 
-## Novelty
-
-PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
+There is no separate experiments/ or results/ folder: each results
+file is written by the runner beside its code and is the evidence
+itself (docs/decisions/0001). There is no src/ for the same reason.
 
 ## License
 
 Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0. Ruled in D-V3-11, 2026-11-04.
-
-## Fan-out
-
-Written fan-out set for v1.0, in fanout/: blog post, tutorial,
-website page copy, LinkedIn draft (held, not posted), paper
-candidate brief (profile-and-fix bottleneck note; submission is
-Jesun's tap, nothing submitted), and release notes covering
-v0.1, v0.5, and v1.0. Every piece states plainly that Go and
-Rust sources are UNEXECUTED, every executed level is a Python
-reference only, all probes and manifests are scripted fixtures,
-and the Deep speedup is an order of magnitude effect, not a
-constant. Channel outcomes and per-piece publicity grades are
-logged in PUBLICITY.md. Live dashboard (replaces the earlier one-page docs summary at the same URL): https://jesunahmadushno.github.io/systems-languages-lab/

@@ -11,7 +11,7 @@ stdlib. The worker pool uses threads plus queue.Queue, which is the closest
 stdlib analogue of goroutines plus channels: jobs go in on a queue,
 workers pull them, results come back on a second queue. The Go teaching
 source sits beside this file in go/health_service.go and is labelled
-unexecuted there and in the level README. No claim in this repo says the
+unexecuted there and in the REPORT.md. No claim in this repo says the
 Go source was compiled or run.
 
 Probes are scripted, not network calls: each endpoint carries the probe

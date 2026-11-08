@@ -19,7 +19,6 @@ https://github.com/JesunAhmadUshno/systems-languages-lab/releases
 - Python reference result: 4 of 6 endpoints healthy, router
   6 of 8 requests routed (beta-chat 4, alpha-embed 2, 2 vision
   requests unrouted), checker 4 of 6 tools unsafe with 7 flags.
-- Level grade: 7,900 of 10,000.
 - Release: https://github.com/JesunAhmadUshno/systems-languages-lab/releases/tag/v0.1
 
 ## v0.5, Build (2026-11-05)
@@ -33,7 +32,6 @@ https://github.com/JesunAhmadUshno/systems-languages-lab/releases
   classified errors, pre-cancelled run 0 probed and 10
   skipped, router 11 of 12 requests routed, checker 5 of 8
   tools unsafe with 14 flags (severity high 3, medium 6, low 5).
-- Level grade: 7,800 of 10,000.
 - Release: https://github.com/JesunAhmadUshno/systems-languages-lab/releases/tag/v0.5
 
 ## v1.0, Learn, Build, and Deep (2026-11-05)
@@ -50,7 +48,6 @@ https://github.com/JesunAhmadUshno/systems-languages-lab/releases
   per batch (5 pooled repetitions, 1 warmup), routing records
   identical to baseline. The speedup is an order of magnitude
   effect, not a constant.
-- Level grade: 7,900 of 10,000.
 - Release: https://github.com/JesunAhmadUshno/systems-languages-lab/releases/tag/v1.0
 
 ## Held channels

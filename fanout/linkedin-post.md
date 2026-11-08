@@ -36,8 +36,7 @@ median batch from 2.434 s to 0.0765 s, with identical routing
 records. That speedup is an order of magnitude effect, not a
 constant: shared VM timing varies by run.
 
-Grades, house scale: Learn 7,900, Build 7,800, Deep 7,900 of
-10,000. 46 checks in total, plus the smoke test. The toolchain
+46 checks in total, plus the smoke test. The toolchain
 port and the real Go pprof run are the first v1.1 items, and
 they are not claimed here.
 

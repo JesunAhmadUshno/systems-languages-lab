@@ -281,15 +281,15 @@ td input { margin: 0; }
 .tree li a { flex: 1 1 100%; overflow-wrap: anywhere; }
 .tree li > span:not(.pill) { color: var(--muted); }
 .tree .pill { padding: 1px 8px; font-size: 10.5px; }
-.grades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
-.grades .num small { font-family: Inter, sans-serif; font-size: 13px; color: var(--muted); }
+.stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.stages .num small { font-family: Inter, sans-serif; font-size: 13px; color: var(--muted); }
 .ded { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 12.5px; color: var(--muted); }
 .ded li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 6px; }
 .ded b { color: var(--bad); font-variant-numeric: tabular-nums; }
 @media (max-width: 760px) {
   .toolpick { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tree, .grades { grid-template-columns: 1fr; }
+  .tree, .stages { grid-template-columns: 1fr; }
   .tile .num { font-size: 30px; }
 }
 .tiles.sm .num { font-size: 30px; }

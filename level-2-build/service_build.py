@@ -8,7 +8,7 @@ This VM has no Go toolchain (rechecked 2026-11-05: go not found), so
 this file is the executed Build reference in Python stdlib. The Go
 Build source sits in go/ in this folder (proper module layout,
 wrapped errors, context cancellation) and is labelled UNEXECUTED
-there and in the level README. No claim says it was compiled or run.
+there and in the REPORT.md. No claim says it was compiled or run.
 
 Build hardening over Learn:
 - A cancellation token shared by the pool. Workers check it before

@@ -9,7 +9,7 @@ not found), so this file is the executed Build reference in Python
 stdlib. The Rust Build source sits in rust/ in this folder (Cargo
 layout, a custom error type with a source chain, Result and the ?
 operator in spirit) and is labelled UNEXECUTED there and in the
-level README. No claim says it was compiled or run.
+REPORT.md. No claim says it was compiled or run.
 
 Build extension over Learn (rules R1 to R5 unchanged):
 - R6 unpinned_version: version missing, empty, "*" or "latest".
